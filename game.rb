@@ -11,14 +11,14 @@ class Game
   end
 
   def start
-    p "let's do some math!"
-    p "what is player 1's name?"
+    puts "let's do some math!"
+    puts "what is player 1's name?"
 
     print "> "
     n1 = $stdin.gets.chomp
     @p1 = Player.new(n1)
 
-    p "what is player 2's name?"
+    puts "what is player 2's name?"
 
     print "> "
     n2 = $stdin.gets.chomp
@@ -26,7 +26,7 @@ class Game
   end
 
   def print_score
-    p "the score is: #{@p1.name}: #{@p1.lives} | #{@p2.name}: #{@p2.lives} "
+    puts "#{@p1.name}: #{@p1.lives}/3 | #{@p2.name}: #{@p2.lives}/3 "
   end
 
 
@@ -37,16 +37,16 @@ class Game
   def play
     while !is_over?
       toggle_player
-      p "the current player is: #{@current_player.name}"
-      p "next question"
-      p "------------------"
+      puts "the current player is: #{@current_player.name}"
+      puts "next question"
+      puts "------------------"
       q = Question.new
 
-      p q.question
+      puts q.question
 
       print "> "
       player_input = $stdin.gets.chomp.to_i
-      p player_input  
+     
 
       # compare player_input to q.answer 
       if player_input != q.answer
@@ -71,7 +71,7 @@ class Game
     else 
       puts "Player #{@p2.name} wins with a score of #{@p2.lives}/3"
     end     
-    p "game over!"
+    puts "game over!"
 
   end
 end
