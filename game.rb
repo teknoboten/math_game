@@ -11,24 +11,26 @@ class Game
   end
 
   def start
-    puts "let's do some math!"
-    puts "what is player 1's name?"
+    puts "Welcome to Math Game! Let's get started. \n\n"
+    p "Enter Player 1's name"
 
     print "> "
     n1 = $stdin.gets.chomp
     @p1 = Player.new(n1)
+    puts `clear`
 
-    puts "what is player 2's name?"
+    puts "\n\nEnter Player 2's name:"
 
     print "> "
     n2 = $stdin.gets.chomp
     @p2 = Player.new(n2)
+    puts `clear`
+    puts "\nOk #{@p1.name} and #{@p2.name}... Let's do some math!\n"
   end
 
   def print_score
-    puts "#{@p1.name}: #{@p1.lives}/3 | #{@p2.name}: #{@p2.lives}/3 "
+    puts "\nThe current score is: #{@p1.name}: #{@p1.lives}/3 | #{@p2.name}: #{@p2.lives}/3 \n"
   end
-
 
   def is_over?
     @p1.lives === 0 || @p2.lives === 0
@@ -37,42 +39,37 @@ class Game
   def play
     while !is_over?
       toggle_player
-      puts "the current player is: #{@current_player.name}"
-      puts "next question"
-      puts "------------------"
+      puts "----------------------------------"
+      print_score()
       q = Question.new
 
-      puts q.question
+      # p q.question
+      puts "\n#{@current_player.name}: #{q.question}?"
 
       print "> "
       player_input = $stdin.gets.chomp.to_i
-     
+      p player_input  
+
+      puts `clear`
 
       # compare player_input to q.answer 
       if player_input != q.answer
        @current_player.fail
-       puts "#{@current_player.name}: do better next time"
+       puts "\n#{@current_player.name}: ❌ Oops... do better next time ❌"
        
       else
-        puts "#{@current_player.name}: Yes! You are correct."
+        puts "\n#{@current_player.name}: ✅ Yes! You are correct. ✅"
       end
-      print_score()
-      # current_player.fail
-
-      # @p1.fail
-      # print_score
-
+      # print "> "
     end
   end
 
   def end_game
     if @p1.lives > 0 
-      puts "Player #{@p1.name} wins with a score of #{@p1.lives}/3"     
+      puts "\n✨#{@p1.name}✨ wins with a score of #{@p1.lives}/3"     
     else 
-      puts "Player #{@p2.name} wins with a score of #{@p2.lives}/3"
+      puts "\n✨#{@p2.name}✨ wins with a score of #{@p2.lives}/3\n"
     end     
-    puts "game over!"
-
   end
 end
 
@@ -96,4 +93,3 @@ end
 #       answer = $stdin.gets.chomp
 #       puts  "#{playerTwo}/3" if asnwer != add()
 #     end
-  
