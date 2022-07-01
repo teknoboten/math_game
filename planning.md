@@ -46,22 +46,6 @@ question (string)
 state:
 behavior:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 **player**
 
 
