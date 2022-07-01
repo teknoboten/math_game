@@ -45,7 +45,7 @@ class Game
       p q.question
 
       print "> "
-      player_input = $stdin.gets.chomp
+      player_input = $stdin.gets.chomp.to_i
       p player_input  
 
       # compare player_input to q.answer 
@@ -56,7 +56,7 @@ class Game
       else
         puts "#{@current_player.name}: Yes! You are correct."
       end
-      
+      print_score()
       # current_player.fail
 
       # @p1.fail
@@ -66,7 +66,13 @@ class Game
   end
 
   def end_game
+    if @p1.lives > 0 
+      puts "Player #{@p1.name} wins with a score of #{@p1.lives}/3"     
+    else 
+      puts "Player #{@p2.name} wins with a score of #{@p2.lives}/3"
+    end     
     p "game over!"
+
   end
 end
 
